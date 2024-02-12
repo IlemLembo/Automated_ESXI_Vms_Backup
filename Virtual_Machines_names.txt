@@ -1,0 +1,2 @@
+# REGISTER YOUR MACHINE NAME HERE
+# Ensure the name of the MACHINE is free from space
