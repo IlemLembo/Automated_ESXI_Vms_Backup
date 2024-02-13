@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cwd=$(pwd)
-ls -d /Backup || mkdir /Backup
-ls -d /var/log/Backup || mkdir /var/log/Backup -p
+ls -d /Backup 2>/dev/null || mkdir /Backup
+ls -d /var/log/Backup 2>/dev/null || mkdir /var/log/Backup -p
 file="$cwd/Virtual_Machines_names.txt"
 
 # Check if the file exists
@@ -11,7 +11,7 @@ if [ ! -f "$file" ]; then
     exit 1
 fi
 
-echo "LOG FOR [$(date +%d-%m-%Y)]" >> /var/log/Backup/Backup.log
+echo "LOG FOR date : [$(date +%d-%m-%Y)]" >> /var/log/Backup/Backup.log
 # Read each line from the file
 while IFS= read -r line; do
     # Skip lines starting with '#'
@@ -45,5 +45,11 @@ while IFS= read -r line; do
     echo $message >> /var/log/Backup/Backup.log
 done < "$file"
 
-echo "END for [$(date +%d-%m-%Y)]" >> /var/log/Backup/Backup.log
+echo "Backup finished"
+echo " " >> /var/log/Backup/Backup.log
+echo " " >> /var/log/Backup/Backup.log
+echo "$(tree /Backup/Backup-$(date +%d-%m-%Y))" >> /var/log/Backup/Backup.log
+echo "END FOR date : [$(date +%d-%m-%Y)]" >> /var/log/Backup/Backup.log
+echo " " >> /var/log/Backup/Backup.log
+echo " " >> /var/log/Backup/Backup.log
 echo "See Log for more details : /var/log/Backup/Backup.log"
