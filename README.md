@@ -37,6 +37,7 @@
 #### Examples of correct format for Virtual_Machines_names.txt
 ---
 ![](images/examples_of_Virtual_Machines_names.png)
+
     Please make sure that the VMs names have no space in it because the script won't work.
 
 ---
