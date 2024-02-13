@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ls -d /Backup || mkdir /Backup
 file="Virtual_Machine_names.txt"
 
@@ -24,13 +23,15 @@ while IFS= read -r line; do
     # For example, print the machine name
     echo "Starting $machine_name backup..."
 
-    # Add your custom operations here
+    # Creating a folder with the current date
     folder_name="$machine_name-$(date +%d-%m-%Y)"
     mkdir -p "$folder_name"
 
-    ovftool -o --quiet vi://root:$(grep password | cut -d " " -f 2)@$(grep Hypervisor Hypervisor_IP_address.txt | cut -d " " -f 2)/$machine_name "/Backup/$folder_name/" || echo "Backup of $machine_name failed. Check if the machine exists!"
+    # Backup the virtual machine
+    ovftool -o --quiet vi://root:$(grep password Hypervisor_Infos.txt | cut -d " " -f 2)@$(grep Hypervisor Hypervisor_Infos.txt | cut -d " " -f 2)/$machine_name "/Backup/$folder_name/" || echo "Backup of $machine_name failed. Check if the machine exists!"
 
-    echo "Backup of $machine_name completed."
+    
+    echo "Backup of $machine_name completed." 
 
 done < "$file"
 

@@ -1,0 +1,3 @@
+## Delete everything here and add the ip address and the password for connexion
+Hypervisor=x.x.x.x
+password=*********
