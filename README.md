@@ -59,6 +59,11 @@
 
 >"windows server AD" # Don't forget the Quotation
 ---
+## Examples of successful Backup :
+![](images/Success_example.png)
+
+---
+---
 ## This is the End
 
 ![end](images/end.jpg)
