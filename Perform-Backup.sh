@@ -24,7 +24,7 @@ while IFS= read -r line; do
     echo "Starting $machine_name backup..."
 
     # Creating a folder with the current date
-    folder_name="$machine_name-$(date +%d-%m-%Y)"
+    folder_name="/Backup/$machine_name-$(date +%d-%m-%Y)"
     mkdir -p "$folder_name"
 
     # Backup the virtual machine
