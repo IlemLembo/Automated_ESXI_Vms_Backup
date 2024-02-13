@@ -1,7 +1,8 @@
 #!/bin/bash
 
+cwd=$(pwd)
 ls -d /Backup || mkdir /Backup
-file="Virtual_Machines_names.txt"
+file="$cwd/Virtual_Machines_names.txt"
 
 # Check if the file exists
 if [ ! -f "$file" ]; then
@@ -27,15 +28,10 @@ while IFS= read -r line; do
     folder_name="/Backup/$machine_name-$(date +%d-%m-%Y)"
     mkdir -p "$folder_name"
 
+
     # Backup the virtual machine
-    echo "ovftool -o --quiet vi://root:$(grep password= Hypervisor_Infos.txt | cut -d '=' -f 2)@$(grep Hypervisor= Hypervisor_Infos.txt| cut -d '=' -f 2)/$machine_name $folder_name/$machine_name-$(date +%d-%m-%Y).vmdk"
-    ovftool -o --quiet "vi://root:$(grep password= Hypervisor_Infos.txt | cut -d '=' -f 2)@$(grep Hypervisor= Hypervisor_Infos.txt | cut -d '=' -f 2)/$machine_name" "$folder_name/$machine_name-$(date +%d-%m-%Y).vmdk" || echo "Backup of $machine_name failed. Check if the machine exists!"
-
-
-    echo "Backup of $machine_name completed."
-
+    # echo "vi://root:$(grep password= $cwd/Hypervisor_Infos.txt | cut -d '=' -f 2)@$(grep Hypervisor= $cwd/Hypervisor_Infos.txt | cut -d '=' -f 2)/$machine_name $folder_name/$machine_name-$(date +%d-%m-%Y)$"
+    ovftool -o --quiet vi://root:$(grep password= $cwd/Hypervisor_Infos.txt | cut -d '=' -f 2)@$(grep Hypervisor= $cwd/Hypervisor_Infos.txt | cut -d '=' -f 2)/$machine_name  "$folder_name/$machine_name-$(date +$
 done < "$file"
 
-echo "All Backups are completed."
-
-echo "See you Next time!"
+echo "All backups completed."
