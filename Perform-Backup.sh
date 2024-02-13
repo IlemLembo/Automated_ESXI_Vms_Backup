@@ -28,7 +28,7 @@ while IFS= read -r line; do
     mkdir -p "$folder_name"
 
     # Backup the virtual machine
-    ovftool -o --quiet vi://root:$(grep password= Hypervisor_Infos.txt | cut -d "=" -f 2)@$(grep Hypervisor= Hypervisor_Infos.txt | cut -d "=" -f 2)/$machine_name "/Backup/$folder_name/" || echo "Backup of $machine_name failed. Check if the machine exists!"
+    ovftool -o --quiet vi://root:$(grep password= Hypervisor_Infos.txt | cut -d "=" -f 2)@$(grep Hypervisor= Hypervisor_Infos.txt | cut -d "=" -f 2)/$machine_name "/Backup/$folder_name/$folder_name.vmdk" || echo "Backup of $machine_name failed. Check if the machine exists!"
 
     
     echo "Backup of $machine_name completed." 
@@ -36,4 +36,3 @@ while IFS= read -r line; do
 done < "$file"
 
 echo "All backups completed."
-```
