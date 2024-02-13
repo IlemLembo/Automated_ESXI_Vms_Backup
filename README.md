@@ -11,7 +11,9 @@
     setfacl -m d:o:--- Tools
 
 ---
-    After that, you need to clone this repository to your backup server.
+    After that, you need to clone this repository to your backup server. And add the permission accordingly...
+
+![](images/intro.png)
 
 
 ## Step 1 : Installing ovftool on the backup Server
