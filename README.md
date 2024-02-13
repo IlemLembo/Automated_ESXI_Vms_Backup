@@ -3,6 +3,17 @@
 
     First thing first, you need to clone this repository to your backup server.
 
+## Step 0 :
+### Get sudo right and Create a directory :
+            # We are giving default perm for child files of this directory :
+    mkdir /Tools
+    setfacl -m d:u:root:rwX Tools
+    setfacl -m d:g:root:rwX Tools
+    setfacl -m d:u:other:--- Tools 
+    setfacl -m d:o:--- Tools
+
+    
+
 ## Step 1 : Installing ovftool on the backup Server
     
     You now need to install ovftool on that backup Server.
